@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <style>
+        .cell {
+            transition: all 0.3s ease;
+        }
+        .cell:hover {
+            transform: scale(1.05);
+        }
+        .winning-cell {
+            background-color: rgba(74, 222, 128, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+    <div class="container mx-auto px-4">
+        <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">Tic Tac Toe</h1>
+        
+        <div class="flex justify-center mb-6">
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <p class="text-lg font-semibold text-center">
+                    Current Player: <span id="current-player" class="text-blue-600">X</span>
+                </p>
+                <p id="game-status" class="text-center mt-2 text-gray-600">Game in progress</p>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-4 max-w-md mx-auto mb-8">
+        </div>
+
+        <div class="flex justify-center">
+            <button id="reset-btn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300">
+                Reset Game
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const board = document.querySelector('.grid');
+            const currentPlayerDisplay = document.getElementById('current-player');
+            const gameStatus = document.getElementById('game-status');
+            const resetBtn = document.getElementById('reset-btn');
+            
+            let currentPlayer = 'X';
+            let gameBoard = ['', '', '', '', '', '', '', '', ''];
+            let gameActive = true;
+            const winningConditions = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+                [0, 4, 8], [2, 4, 6]             
+            ];
+            function createBoard() {
+                board.innerHTML = '';
+                gameBoard.forEach((cell, index) => {
+                    const cellElement = document.createElement('div');
+                    cellElement.classList.add(
+                        'cell', 
+                        'w-24', 
+                        'h-24', 
+                        'bg-white', 
+                        'rounded-lg', 
+                        'shadow-md', 
+                        'flex', 
+                        'items-center', 
+                        'justify-center', 
+                        'text-4xl', 
+                        'font-bold', 
+                        'cursor-pointer'
+                    );
+                    cellElement.dataset.index = index;
+                    cellElement.textContent = cell;
+                    cellElement.addEventListener('click', handleCellClick);
+                    board.appendChild(cellElement);
+                });
+            }
+            function handleCellClick(e) {
+                const clickedCell = e.target;
+                const clickedCellIndex = parseInt(clickedCell.dataset.index);
+                
+                if (gameBoard[clickedCellIndex] !== '' || !gameActive) {
+                    return;
+                }
+                
+                gameBoard[clickedCellIndex] = currentPlayer;
+                clickedCell.textContent = currentPlayer;
+                clickedCell.classList.add(currentPlayer === 'X' ? 'text-blue-500' : 'text-red-500');
+                
+                checkGameResult();
+            }
+            function checkGameResult() {
+                let roundWon = false;
+                
+                for (let i = 0; i < winningConditions.length; i++) {
+                    const [a, b, c] = winningConditions[i];
+                    if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
+                        roundWon = true;
+                        highlightWinningCells([a, b, c]);
+                        break;
+                    }
+                }
+                if (roundWon) {
+                    gameStatus.textContent = `Player ${currentPlayer} wins!`;
+                    gameStatus.classList.remove('text-gray-600');
+                    gameStatus.classList.add('text-green-500');
+                    gameActive = false;
+                    return;
+                }
+                if (!gameBoard.includes('')) {
+                    gameStatus.textContent = 'Game ended in a draw!';
+                    gameStatus.classList.remove('text-gray-600');
+                    gameStatus.classList.add('text-yellow-500');
+                    gameActive = false;
+                    return;
+                }
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                currentPlayerDisplay.textContent = currentPlayer;
+                currentPlayerDisplay.className = currentPlayer === 'X' ? 'text-blue-600' : 'text-red-600';
+            }
+            function highlightWinningCells(cells) {
+                cells.forEach(index => {
+                    document.querySelector(`[data-index="${index}"]`).classList.add('winning-cell');
+                });
+            }
+            function resetGame() {
+                currentPlayer = 'X';
+                gameBoard = ['', '', '', '', '', '', '', '', ''];
+                gameActive = true;
+                currentPlayerDisplay.textContent = currentPlayer;
+                currentPlayerDisplay.className = 'text-blue-600';
+                gameStatus.textContent = 'Game in progress';
+                gameStatus.className = 'text-center mt-2 text-gray-600';
+                createBoard();
+            }
+            resetBtn.addEventListener('click', resetGame);
+            createBoard();
+        });
+    </script>
+</body>
+</html>

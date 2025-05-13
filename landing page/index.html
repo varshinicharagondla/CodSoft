@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Navigation Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        
+        .nav-item {
+            position: relative;
+        }
+        
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: currentColor;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-item:hover::after {
+            width: 100%;
+        }
+        
+        
+        .mobile-menu-button span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: currentColor;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-button.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .mobile-menu-button.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-button.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+        
+       
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50">
+   
+    <nav id="mainNav" class="fixed w-full z-50 transition-all duration-500 bg-white shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+              
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-bold text-indigo-600 flex items-center">
+                        <i class="fas fa-rocket mr-2"></i>
+                        <span>Landora</span>
+                    </a>
+                </div>
+                
+                
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#home" class="nav-item text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Home</a>
+                    <a href="#features" class="nav-item text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Features</a>
+                    <a href="#pricing" class="nav-item text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Pricing</a>
+                    <a href="#about" class="nav-item text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">About</a>
+                    <a href="#contact" class="nav-item text-gray-900 hover:text-indigo-600 px-3 py-2 text-sm font-medium">Contact</a>
+                    <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors duration-300">
+                        Get Started
+                    </button>
+                </div>
+                
+                
+                <div class="md:hidden flex items-center">
+                    <button id="mobileMenuButton" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-indigo-600 focus:outline-none">
+                        <span></span>
+                        <span class="mt-1 mb-1"></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+       
+        <div id="mobileMenu" class="hidden md:hidden bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="nav-item block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50">Home</a>
+                <a href="#features" class="nav-item block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50">Features</a>
+                <a href="#pricing" class="nav-item block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50">Pricing</a>
+                <a href="#about" class="nav-item block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50">About</a>
+                <a href="#contact" class="nav-item block px-3 py-2 rounded-md text-base font-medium text-gray-900 hover:text-indigo-600 hover:bg-gray-50">Contact</a>
+                <button class="w-full mt-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-md text-base font-medium transition-colors duration-300">
+                    Get Started
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    
+    <section id="home" class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-indigo-500 to-purple-600 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">Build Amazing Digital Experiences</h1>
+                    <p class="text-xl mb-8 opacity-90">Our platform helps you create beautiful websites and applications that your users will love.</p>
+                    <div class="flex space-x-4">
+                        <button class="bg-white text-indigo-600 hover:bg-gray-100 px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
+                            Get Started
+                        </button>
+                        <button class="border-2 border-white text-white hover:bg-white hover:text-indigo-600 px-6 py-3 rounded-md text-lg font-medium transition-colors duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 mt-10 md:mt-0">
+                    <img src="10-hero-image-website-ideas-to-inspire-you-header-3.png" alt="A description of the image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Amazing Features</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Discover the powerful features that will help you build better products faster.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-bolt text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600">Our platform is optimized for speed, ensuring your applications load in milliseconds.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-lock text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Secure by Design</h3>
+                    <p class="text-gray-600">Built with security in mind, protecting your data and your users' privacy.</p>
+                </div>
+                
+                <div class="bg-gray-50 p-8 rounded-lg hover:shadow-xl transition-shadow duration-300">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Fully Responsive</h3>
+                    <p class="text-gray-600">Looks great on any device, from mobile phones to large desktop screens.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Simple Pricing</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Choose the plan that fits your needs. No hidden fees.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-lg border border-gray-200 hover:border-indigo-500 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Starter</h3>
+                    <p class="text-gray-600 mb-6">Perfect for small projects and personal websites.</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$9</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>1 Website</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>10 GB Storage</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Basic Support</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-md font-medium transition-colors duration-300">
+                        Get Started
+                    </button>
+                </div>
+                <div class="bg-white p-8 rounded-lg border-2 border-indigo-500 shadow-lg transform scale-105">
+                    <div class="absolute top-0 right-0 bg-indigo-500 text-white px-3 py-1 text-sm font-bold rounded-bl-lg">
+                        POPULAR
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Professional</h3>
+                    <p class="text-gray-600 mb-6">Ideal for growing businesses and professional websites.</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$29</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>5 Websites</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>50 GB Storage</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Priority Support</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Advanced Analytics</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md font-medium transition-colors duration-300">
+                        Get Started
+                    </button>
+                </div>
+                
+                <div class="bg-white p-8 rounded-lg border border-gray-200 hover:border-indigo-500 transition-all duration-300">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Enterprise</h3>
+                    <p class="text-gray-600 mb-6">For large businesses with custom requirements.</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Unlimited Websites</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>500 GB Storage</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>24/7 Support</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Dedicated Account Manager</span>
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-check text-green-500 mr-2"></i>
+                            <span>Custom Solutions</span>
+                        </li>
+                    </ul>
+                    <button class="w-full bg-gray-100 hover:bg-gray-200 text-gray-800 px-6 py-3 rounded-md font-medium transition-colors duration-300">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="md:flex md:items-center md:space-x-12">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <img src="Make-your-Website-more-Attractive-for-your-Customers-1024x578.jpg" alt="About Us">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">About Our Company</h2>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Founded in 2015, we've been helping businesses of all sizes create beautiful digital experiences. 
+                        Our team of experts is passionate about design, technology, and delivering exceptional results.
+                    </p>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        We believe in building long-term relationships with our clients and helping them succeed in an 
+                        increasingly digital world. Our approach combines creativity with technical excellence.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Our Mission</h3>
+                            <p class="text-gray-600">
+                                To empower businesses with beautiful, functional digital solutions that drive growth.
+                            </p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Our Values</h3>
+                            <p class="text-gray-600">
+                                Integrity, innovation, and customer satisfaction are at the core of everything we do.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Get In Touch</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Have questions or want to discuss a project? We'd love to hear from you.</p>
+            </div>
+            
+            <div class="md:flex md:space-x-8">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                            <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="your.email@example.com">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Subject">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your message"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-md font-medium transition-colors duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-lg shadow-sm h-full">
+                        <h3 class="text-xl font-bold text-gray-900 mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-map-marker-alt text-indigo-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-sm font-medium text-gray-900">Address</h4>
+                                    <p class="text-sm text-gray-600">111 Hyderabad<br>Telangana,85127</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-phone-alt text-indigo-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-sm font-medium text-gray-900">Phone</h4>
+                                    <p class="text-sm text-gray-600">+91 1234567</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0 h-10 w-10 rounded-full bg-indigo-100 flex items-center justify-center">
+                                    <i class="fas fa-envelope text-indigo-600"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-sm font-medium text-gray-900">Email</h4>
+                                    <p class="text-sm text-gray-600">hello@Landora.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h3 class="text-xl font-bold text-gray-900 mb-6">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="h-10 w-10 rounded-full bg-gray-100 hover:bg-indigo-100 flex items-center justify-center transition-colors duration-300">
+                                    <i class="fab fa-facebook-f text-gray-600 hover:text-indigo-600"></i>
+                                </a>
+                                <a href="#" class="h-10 w-10 rounded-full bg-gray-100 hover:bg-indigo-100 flex items-center justify-center transition-colors duration-300">
+                                    <i class="fab fa-twitter text-gray-600 hover:text-indigo-600"></i>
+                                </a>
+                                <a href="#" class="h-10 w-10 rounded-full bg-gray-100 hover:bg-indigo-100 flex items-center justify-center transition-colors duration-300">
+                                    <i class="fab fa-instagram text-gray-600 hover:text-indigo-600"></i>
+                                </a>
+                                <a href="#" class="h-10 w-10 rounded-full bg-gray-100 hover:bg-indigo-100 flex items-center justify-center transition-colors duration-300">
+                                    <i class="fab fa-linkedin-in text-gray-600 hover:text-indigo-600"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-bold mb-4">BrandName</h3>
+                    <p class="text-gray-400">
+                        Building beautiful digital experiences that help businesses grow and succeed.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors duration-300">Features</a></li>
+                        <li><a href="#pricing" class="text-gray-400 hover:text-white transition-colors duration-300">Pricing</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">About</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Cookie Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold mb-4">Subscribe</h3>
+                    <p class="text-gray-400 mb-4">Get the latest news and updates.</p>
+                    <form class="flex">
+                        <input type="email" placeholder="Your email" class="px-4 py-2 rounded-l-md w-full focus:outline-none text-gray-900">
+                        <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-r-md transition-colors duration-300">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm">© 2023 BrandName. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+     
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenuButton.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+        });
+        const navbar = document.getElementById('mainNav');
+        let lastScrollPosition = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScrollPosition = window.pageYOffset;
+            
+         
+            if (currentScrollPosition <= 0) {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.remove('bg-opacity-90');
+                navbar.classList.add('bg-white');
+                navbar.classList.add('shadow-sm');
+            } else if (currentScrollPosition > lastScrollPosition && currentScrollPosition > 100) {
+              
+                navbar.classList.add('shadow-lg');
+                navbar.classList.add('bg-opacity-90');
+                navbar.classList.add('backdrop-blur-sm');
+                navbar.classList.remove('shadow-sm');
+            } else {
+               
+                navbar.classList.add('shadow-lg');
+                navbar.classList.add('bg-opacity-90');
+                navbar.classList.add('backdrop-blur-sm');
+                navbar.classList.remove('shadow-sm');
+            }
+            const heroSection = document.getElementById('home');
+            const heroHeight = heroSection.offsetHeight;
+            
+            if (currentScrollPosition > heroHeight - 100) {
+                navbar.classList.add('bg-white');
+                navbar.classList.remove('bg-opacity-0');
+            } else {
+                navbar.classList.add('bg-white');
+            }
+            
+            lastScrollPosition = currentScrollPosition;
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    mobileMenuButton.classList.remove('active');
+                    mobileMenu.classList.add('hidden');
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-item');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('text-indigo-600');
+                link.classList.add('text-gray-900');
+                
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.remove('text-gray-900');
+                    link.classList.add('text-indigo-600');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
